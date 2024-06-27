@@ -68,7 +68,7 @@ void registro_cuentas::agregar(cuenta c){
 	tabla[indice] = c;
 	
 	//Logica posterior
-	espUsados+=1;
+	espUsados++;
 	factor_de_carga = (float)espUsados/ranuras;
 	
 	if(factor_de_carga>=0.6){
@@ -83,6 +83,7 @@ cuenta registro_cuentas::obtener(string rol){
 	c.rol = "NOVALIDO";
 	int indice = encontrarIndice(rol);
 	if(indice == -1){
+		cout<<"Rol no existente\n";
 		return c;
 	}
 	c = tabla[indice];
@@ -93,6 +94,10 @@ void registro_cuentas::eliminar(string rol){
 	int indice = encontrarIndice(rol);
 	if(indice != -1){
 		tabla[indice].rol = "Liberada";
+		espUsados--;
+		factor_de_carga = (float)espUsados/ranuras;
+	}else{
+		cout<<"Rol no existente\n";
 	}
 	
 }
@@ -102,7 +107,7 @@ int registro_cuentas::encontrarIndice(string rol){
 	int indice = indiceOriginal;
 	while (tabla[indice].rol != rol){
 		if(indice == indiceOriginal || tabla[indice].rol =="Nunca Usada"){
-			cout<<"Rol ya existente\n";
+			//cout<<"Rol ya existente\n";
 			return -1;
 				
 		}
@@ -114,6 +119,7 @@ int registro_cuentas::encontrarIndice(string rol){
 void registro_cuentas::modificar(string rol, string descripcion){
 	int indice = encontrarIndice(rol);
 	if(indice == -1){
+		cout<<"Rol no existente\n";
 		return;
 	}
 	tabla[indice].descripcion = descripcion;
