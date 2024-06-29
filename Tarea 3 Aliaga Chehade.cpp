@@ -6,6 +6,17 @@
 using namespace std;
 
 
+/*****
+* int main
+******
+* La función crea un objeto registro_cuentas, lee el archivo .txt y segun lo que esté escrito
+* llama al método que corresponda del TDA.
+******
+* No hay inputs
+******
+* Retorna el entero 0 como es costumbre en el main.
+*****/
+
 int main() {
 	registro_cuentas r;
 	ifstream archivo;
@@ -38,6 +49,6 @@ int main() {
 			r.estadisticas();
 		}
 	}
-	
+	return 0;
 };
 
